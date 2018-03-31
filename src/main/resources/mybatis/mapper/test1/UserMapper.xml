@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liuchunshu.demo.mapper.test1.User1Mapper" >
+    <resultMap id="BaseResultMap" type="com.liuchunshu.demo.entity.UserEntity" >
+        <id column="uid" property="id" jdbcType="BIGINT" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+        <result column="passWord" property="passWord" jdbcType="VARCHAR" />
+        <result column="gender" property="userSex" typeHandler="com.liuchunshu.demo.enums.UniversalEnumTypeHandler"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        uid, userName, passWord, gender
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM t_user
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM t_user
+	   WHERE uid = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.liuchunshu.demo.entity.UserEntity" >
+       INSERT INTO 
+       		t_user
+       		(userName,passWord,gender) 
+       	VALUES
+       		(#{userName}, #{passWord}, #{userSex})
+    </insert>
+    
+    <update id="update" parameterType="com.liuchunshu.demo.entity.UserEntity" >
+       UPDATE 
+       		t_user 
+       SET 
+       	<if test="userName != null">userName = #{userName},</if>
+       	<if test="passWord != null">passWord = #{passWord},</if>
+       WHERE 
+       		uid = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.Long" >
+       DELETE FROM
+       		 t_user 
+       WHERE 
+       		 uid =#{id}
+    </delete>
+
+</mapper>
