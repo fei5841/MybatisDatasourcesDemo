@@ -35,6 +35,7 @@ public class UserController {
 	public ModelAndView index() {
 		ModelAndView model=new ModelAndView("index");
 		String token=JwtToken.createToken(screat);
+		System.out.println("text");
 		model.addObject("token", token);
 		return model;
 	}
@@ -42,6 +43,7 @@ public class UserController {
 	@RequestMapping("/getUsers")
 	public List<UserEntity> getUsers() {
 		List<UserEntity> users=user1Mapper.getAll();
+		System.out.println("text");
 		return users;
 	}
 	
