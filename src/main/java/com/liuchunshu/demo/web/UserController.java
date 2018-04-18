@@ -34,6 +34,7 @@ public class UserController {
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView model=new ModelAndView("index");
+		logger.info("index request");
 		String token=JwtToken.createToken(screat);
 		System.out.println("text");
 		model.addObject("token", token);

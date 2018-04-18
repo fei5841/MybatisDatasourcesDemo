@@ -7,6 +7,9 @@
 <body>
 <!-- 	<p th:text="'Token is : ' + ${token} + '!'" style="white-space: pre-line;width: 600px;">token</p> -->
 	<div  th:text="'Token is : ' + ${token} + '!'" th:style="'width: 600px;word-wrap:break-word;'">Token is : ${token}!</div>
+	<p th:text="#{test.key1}"></p>
+	<p th:text="#{test.key2}"></p>
+	<p th:text="#{test.key3}"></p>
 	<div th:id="json"></div>
 	<a th:href="'javascript:getUsers()'">getUsers</a>
 	<a th:href="'javascript:getUserbyid()'">getUsers</a>
