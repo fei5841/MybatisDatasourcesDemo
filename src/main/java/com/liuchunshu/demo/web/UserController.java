@@ -43,7 +43,7 @@ public class UserController {
 	@RequestMapping("/getUsers")
 	public List<UserEntity> getUsers() {
 		List<UserEntity> users=user1Mapper.getAll();
-		System.out.println("text");
+		System.out.println("textddd");
 		return users;
 	}
 	
