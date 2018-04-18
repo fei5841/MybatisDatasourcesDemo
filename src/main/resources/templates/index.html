@@ -5,6 +5,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p th:text="'Token is : ' + ${token} + '!'" >token</p>
+<!-- 	<p th:text="'Token is : ' + ${token} + '!'" style="white-space: pre-line;width: 600px;">token</p> -->
+	<div  th:text="'Token is : ' + ${token} + '!'" th:style="'width: 600px;word-wrap:break-word;'">Token is : ${token}!</div>
+	<div th:id="json"></div>
+	<a th:href="'javascript:getUsers()'">getUsers</a>
+	<a th:href="'javascript:getUserbyid()'">getUsers</a>
 </body>
+<script type="text/javascript" th:replace="thymeleaf/basepath::basepath"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+function getUsers(){
+	$.ajax({
+        type: "post",
+        dataType: "json",
+        url: basepath+"/getUsers",
+//         data: {"id":1},
+        success: function(data) {
+        	$("#json").html("这是getUsers:<br />");
+        	for(var i=0;i<data.length;i++){
+        		$("#json").append(data[i].userName+","+data[i].passWord+","+data[i].userSex+","+JSON.stringify(data[i])+"<br />");
+        	}
+        }
+    });
+}
+
+function getUserbyid(){
+	$.ajax({
+        type: "post",
+        dataType: "json",
+        url: basepath+"/getUser",
+        data: {"id":1},
+        success: function(data) {
+        	$("#json").html("这是getUser,id为1:<br />");
+        	$("#json").append(data.userName+","+data.passWord+","+data.userSex+","+JSON.stringify(data));
+        }
+    });
+}
+</script>
 </html>
