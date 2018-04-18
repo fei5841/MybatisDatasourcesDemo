@@ -11,7 +11,6 @@ public class MybatisDatasourcesDemoApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.pringln("text");
 		System.out.println("test");
 	}
 
