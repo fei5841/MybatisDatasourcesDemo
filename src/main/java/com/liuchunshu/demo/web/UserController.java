@@ -35,6 +35,7 @@ public class UserController {
 	public ModelAndView index() {
 		ModelAndView model=new ModelAndView("index");
 		System.out.println("index request");
+		//需要在pom中引入BASE64才能使用，否则报错
 //		String token=JwtToken.createToken(screat);
 		model.addObject("token", screat);
 		return model;
