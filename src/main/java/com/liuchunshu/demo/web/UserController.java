@@ -36,7 +36,6 @@ public class UserController {
 		ModelAndView model=new ModelAndView("index");
 		logger.info("index request");
 		String token=JwtToken.createToken(screat);
-		System.out.println("text");
 		model.addObject("token", token);
 		return model;
 	}
